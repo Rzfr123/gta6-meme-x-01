@@ -282,3 +282,55 @@ is byte-identical to the new POST.json (sha256
 9f0bbc54a8b47a4fa86a70282fcca6b5a2d2e3af7fd1bf4a76701ec2bb06e9ac).
 main.ts unchanged. NOT submitted to make.fun from here — parent bundles
 and submits.
+
+## Submission — SUBMITTED + VERIFIED (2026-11-20 ~02:43 WIB)
+
+- Submission `01a1f555-e769-7174-b963-a6c527ddb44d`, title
+  "WASTED — 13 Years, 2 Delays, 99% Loading", commit `3c22d58`,
+  repo https://github.com/Rzfr123/gta6-meme-x-01
+- X post: https://x.com/zaaaeth/status/2123500457482162603 (POST.json
+  commit `f7bce4e`); LICENSE SPDX fix commit `3c22d58` — license_osi was
+  the only failing local gate (LICENSE lacked the SPDX line).
+- Bundle: `~/workspace/makefun/gta6-meme-x-01-transcripts.tar.gz`,
+  sha256 `d47edeebc5b599521d52c80b22c59a2223c1a722916a0bfe21453fbef397d943`,
+  11,365,270 bytes, 7 sessions, 7 usage rows
+  (`~/workspace/makefun/muse-usage-gta6-meme-x-01.jsonl`).
+- Bundle command (from `~/workspace/makefun/gta6-meme-x-01-kit/
+  gta6-meme-x-01-kit`, kit harness@100212c6):
+  `node cli/makefun.mjs bundle --repo ~/workspace/makefun/gta6-meme-x-01
+  --out ~/workspace/makefun/gta6-meme-x-01-transcripts.tar.gz
+  --session <round1 c28ab8a0> --session <rev1 74013075>
+  --session <rev2 5df6c6a1> --session <rev3 1bd3b7a8>
+  --session <rev4 e68d7565> --session <POST.json 995d47e1>
+  --session <LICENSE 565d7c79> --no-discover --no-family
+  --muse-usage ~/workspace/makefun/muse-usage-gta6-meme-x-01.jsonl
+  --system-prompt ~/workspace/system/system_prompt.md
+  --parent-session <this coordinator 05add8ce>
+  --parent-session <rev4 coordinator d8ba003f>
+  --parent-session <round1 coordinator 356eb1fa>
+  --parent-session <main 710bc693>
+  --harness muse-app --harness-version "muse-app (Muse Spark 1.3) node v24.22.1"
+  --model ipnext/avocado-5.17-v2 --provider ipnext --effort default
+  --prompt-file ~/workspace/makefun/prompt-gta6-meme-x-01.txt
+  --prompt-origin handed-off --prompt-via "subagent task from the main agent"
+  --mcp none`
+- Prompt-file choice: round-1 prompt file
+  `~/workspace/makefun/prompt-gta6-meme-x-01.txt` (user verbatim
+  "Gas, buatkan meme-nya"); revision prompt files rev1–rev4 are recorded
+  in the bundle notes above. Parent-chain note: the kit caps a parent
+  chain at 4 links, so only 4 parent sessions could be named — this
+  coordinator (POST.json + LICENSE sessions), rev-4 coordinator (final
+  meme), round-1 coordinator (prompt origin), main. Rev-1/2/3
+  coordinators were omitted; local + server checks still passed.
+- Local check at 3c22d58: ok true, 0 failed (license_osi fixed).
+  Server status: stage scored, 30 checks — 27 pass, 3 skip, 0 fail;
+  entry_link pass (post 2123500457482162603, 1 photo, @makefunai,
+  make.fun link, play code); authorship 96.8% (423/437 lines).
+- Dev judge (provisional): 58.1% win rate (2W-4D-6L, 12 matches),
+  prize_eligible true, ranked true. Recurring critique: the image is
+  cluttered with stacked text blocks and "SINCE 2002" muddies the joke;
+  the WASTED gag itself lands (wins vs weak/plain anchors). Result due
+  2026-12-08T02:00:00Z. Leaderboard rows had not landed at verify time.
+- Claim code saved to
+  `~/workspace/makefun/submission-01a1f555-e769-7174-b963-a6c527ddb44d.json`
+  mode 600 (never printed).
