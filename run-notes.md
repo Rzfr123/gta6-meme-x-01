@@ -269,3 +269,16 @@ phone and sends the URL. Do NOT submit with the placeholder.
   needs the Solana signature path.
 - The parent bundles + submits ONLY after the user posts and sends the
   real X post URL, then replaces POST.json with it.
+
+## POST.json set to the live X post (2026-11-20 ~02:37 WIB)
+
+User posted the meme on X; POST.json now holds the live post URL:
+`{"url": "https://x.com/zaaaeth/status/2123500457482162603"}` (canonical,
+no tracking params). Commit f7bce4e4903b75d7ebadcb7a0e2488e6e99eb4a0
+("Set POST.json to the live X post", POST.json only). Verification:
+`bun run main.ts` with MAKEFUN_BOT_DIR=<repo> and
+MAKEFUN_OUTPUT_DIR=/tmp/gta6-meme-verify-out exited 0; /output/POST.json
+is byte-identical to the new POST.json (sha256
+9f0bbc54a8b47a4fa86a70282fcca6b5a2d2e3af7fd1bf4a76701ec2bb06e9ac).
+main.ts unchanged. NOT submitted to make.fun from here — parent bundles
+and submits.
