@@ -93,6 +93,47 @@ Visual check (genuine revision):
   pointing at the ghost. Final meme.png sha256:
   cc6d2968a7bb5ecd0201456f42a91e1fa929adcb939e658e645279166321678c
 
+## Revision 2 — GTA "WASTED" death screen (2026-11-20 ~02:00 WIB)
+
+User's verbatim instruction: "Kurang menarik rubah lagi. Nuansa GTA nya
+tidak ada dan kurang lucu." Prompt file:
+~/workspace/makefun/prompt-gta6-meme-x-01-rev2.txt (OUTSIDE the repo).
+The Drake format (commit 3f86874) is replaced entirely; render.py +
+meme.png rewritten fresh in-session. DO NOT SUBMIT — no X post exists yet.
+
+Concept: the iconic GTA "WASTED" death screen, drawn as GTA-STYLE text
+(no copyrighted GTA art, no lifted screenshot, no trademark logo image).
+Fresh original illustration: neon Vice City / Leonida sunset — pink-orange
+sky, palm trees, art-deco skyline, neon waterfront — with a Hawaiian-shirt
+gamer slumped face-down on the beach, empty cans around him. Across the
+open sky, huge grey death-screen lettering "WASTED" (font 184, letter-
+spaced, black outline); sub-line "CAUSE OF DEATH: THE 99% LOADING
+SCREEN"; a pink loading bar HUD stuck at 99% over the sun/skyline; five
+gold wanted stars top-right (GTA HUD detail). Bottom punchline bar with
+the REAL press-kit ghost (magenta disc, 104px, clearly recognisable):
+"MEANWHILE MY AI AGENT / ALREADY WON REAL MONEY / ON make.fun".
+
+Assets (new): `assets/media-generation-gta6-wasted-vice-city-base-0-9b0b21d1-...png`
+— original illustration generated in-session with media.generate_image
+(no text, no logos in the generated art; all text added with PIL).
+Ghost still the REAL press asset `assets/mark-1024.png`; AI was NOT used
+to draw the ghost/logo. Old Drake panels stay in the repo (unused).
+
+Visual check (genuine revision):
+- v1 defect found by reading meme.png at full size: the two centred
+  bottom lines ran across the gamer's face (head spans x ~700..900 down
+  into the bar) — the punchline text talked over the character.
+- v2 fix (real layout change in render.py): punchline re-laid as three
+  short lines in the LEFT column only (x 130..650, font 32), clear of the
+  face; an assert guards the 3-line block against the 116px bar height
+  (caught a 1px overflow on the first run — line height tightened 1.18
+  -> 1.12). Face now fully visible above the bar.
+- v2 re-checked at full size and at 480x480 (judge size): WASTED huge
+  and unclipped, sub-line + 99% bar legible, 5 stars readable, ghost
+  clearly recognisable, all bottom text legible with no overlaps.
+  Final meme.png sha256:
+  0616a7e592550efef7832cf2a649b49d7215ca70049be0b6cc3250e69641649e
+
 ## POST.json — PLACEHOLDER, MUST BE REPLACED
 
 `POST.json` currently holds `{"url": "https://x.com/<handle>/status/<id>"}`.
@@ -106,6 +147,8 @@ phone and sends the URL. Do NOT submit with the placeholder.
 - Parents (round 1): coordinator session 356eb1fa-4000-4f0e-b0cc-6752af6f9699 +
   main session 710bc693-2de5-453e-a87f-8be6fb75c614
 - Parents (revision 1): coordinator session 63eb32f6-46d8-497e-90dc-e026a6c617b7 +
+  main session 710bc693-2de5-453e-a87f-8be6fb75c614
+- Parents (revision 2): coordinator session 92c77703-9b0f-40d7-ab27-ae36f5394ff1 +
   main session 710bc693-2de5-453e-a87f-8be6fb75c614
 - Prompt file (user's verbatim words): ~/workspace/makefun/prompt-gta6-meme-x-01.txt
   ("Gas, buatkan meme-nya")
