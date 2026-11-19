@@ -170,6 +170,68 @@ Visual check (v1 -> v2):
   Final meme.png sha256:
   bd124be2081cabf076f55a902172e1296831392853b0727b6d3da648292c7574
 
+## Revision 4 — Satire: GTA 6's own flaws kill the gamer (2026-11-20 ~02:20 WIB)
+
+User's verbatim instruction: "Coba meme menyindir kekurangan gta6."
+Prompt file: ~/workspace/makefun/prompt-gta6-meme-x-01-rev4.txt (OUTSIDE
+the repo). The rev-3 drive-by death (commit 0fe1b99) is replaced;
+render.py + meme.png rewritten fresh in-session. DO NOT SUBMIT — no X
+post exists yet.
+
+Concept: same GTA "WASTED" death screen + neon Vice City / Leonida
+sunset as rev 2/3, but the death is now GTA 6's own shortcomings.
+Fresh original illustration: the Hawaiian-shirt gamer slumped asleep
+on the waterfront curb, cobwebbed, still clutching his controller,
+next to a tower of old torn calendars, a dusty console and empty cans
+— he waited so long the wait itself got him. Text (all PIL, no text
+from the generated art):
+- "WASTED" huge grey death-screen lettering (font 184).
+- Cause of death, two lines: "CAUSE OF DEATH:" / "13 YEARS, 2 DELAYS,
+  99% LOADING" — the 13-year wait, the two delays (Fall 2025 -> May
+  2026 -> 19 Nov 2026), the loading screen that never finishes.
+- 99% loading bar HUD over the sun + "99% - EST. TIME: 13 YEARS".
+- Tagline: "BACK IN VICE CITY. AGAIN. (SINCE 2002)" — Leonida is the
+  same city as 2002. No specs, prices or review scores invented.
+- Five gold wanted stars top-right; bottom punchline bar with the REAL
+  press-kit ghost (magenta disc, 104px): "MEANWHILE MY AI AGENT /
+  ALREADY WON REAL MONEY / ON make.fun".
+
+Assets (new): `assets/media-generation-gta6-satire-vice-city-base-0-980f51f6-...png`
+— original illustration generated in-session with media.generate_image
+(no text, no logos in the generated art; all text added with PIL).
+Ghost still the REAL press asset `assets/mark-1024.png`; AI was NOT used
+to draw the ghost/logo. Old rev-3 base stays in the repo (unused).
+
+Visual check (v1 -> v2, genuine revision):
+- v1 defects found by reading meme.png at full size and at 480x480
+  (judge size): (1) the cause-of-death sub-line was one long line
+  auto-shrunk to font 30 — small at 480px; (2) the yellow tagline ran
+  across the calendar stack at the right, "(SINCE 2002)" on beige
+  calendar pages, weak contrast at 480px.
+- v2 fix (real layout change in render.py): sub-line split into two
+  short lines at font 42; tagline re-laid left-of-centre (cx 390,
+  max width 660, font 28) over the open dark water, clear of the
+  calendar stack.
+- v2 re-checked at full size and at 480x480: WASTED huge and unclipped,
+  sub-line + 99% bar + tagline all legible, 5 stars readable, ghost
+  clearly recognisable, bottom punchline legible with no overlaps,
+  gamer's face clear above the bar, calendar tower + cobwebs read at
+  both sizes. Final meme.png sha256:
+  68b3e295085e5b966e7a4b1030acbfac7a53be82b5b725b51ebd87da68898c9d
+
+## Caption draft (rev 4 — for the user to post on X, keep it short)
+
+> GTA 6 killed me before I could even play it: 13 years, 2 delays, and
+> a loading screen stuck at 99% 💀 Meanwhile my AI agent already won
+> real money on @makefunai — people and their agents build things and
+> earn real cash in bounties there.
+> https://make.fun/bounty/gta6-meme-x-01 makefun-desk-onion-skyline
+
+Carries make.fun (link) + @makefunai tag, play code
+`makefun-desk-onion-skyline` (code 0), and the earn-real-money pitch.
+Post from the public X account with meme.png attached as the FIRST picture.
+Keep the post up and the account public until results are out.
+
 ## POST.json — PLACEHOLDER, MUST BE REPLACED
 
 `POST.json` currently holds `{"url": "https://x.com/<handle>/status/<id>"}`.
@@ -190,6 +252,11 @@ phone and sends the URL. Do NOT submit with the placeholder.
   ("Keknya lebih bagus seperti kena tembak nungguin game.")
   --prompt-origin handed-off, --prompt-via "subagent task from the main agent"
   (same parents as above)
+- Revision 4 prompt file: ~/workspace/makefun/prompt-gta6-meme-x-01-rev4.txt
+  ("Coba meme menyindir kekurangan gta6.")
+  --prompt-origin handed-off, --prompt-via "subagent task from the main agent"
+  Parents (revision 4): coordinator session d8ba003f-a951-4f96-84ec-a40008b5d5dc +
+  main session 710bc693-2de5-453e-a87f-8be6fb75c614
 - Prompt file (user's verbatim words): ~/workspace/makefun/prompt-gta6-meme-x-01.txt
   ("Gas, buatkan meme-nya")
 - Revision 1 prompt file: ~/workspace/makefun/prompt-gta6-meme-x-01-rev1.txt

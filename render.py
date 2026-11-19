@@ -1,25 +1,30 @@
 #!/usr/bin/env python3
-"""Render the gta6-meme-x-01 WASTED drive-by meme (rev 3).
+"""Render the gta6-meme-x-01 satire meme (rev 4).
 
-Replaces the rev-2 "99% loading screen" death. Same neon Vice City /
-Leonida sunset and GTA death-screen format, new gag: the gamer gets SHOT
-in a drive-by while waiting for the game. Fresh original illustration:
-a pink convertible speeds away with a muzzle flash, the Hawaiian-shirt
-gamer slumps on the curb still clutching his controller, cans scattered.
+Replaces the rev-3 drive-by death. Same neon Vice City / Leonida sunset
+and GTA "WASTED" death-screen format, new gag: GTA 6's own flaws kill the
+gamer. Fresh original illustration: the Hawaiian-shirt gamer slumped
+asleep on the waterfront curb, cobwebbed, clutching his controller next
+to a tower of old torn calendars, a dusty console and empty cans — he
+waited so long the wait itself got him.
 
 Layout (1024x1024, base scene is the full-bleed illustration):
   - Wanted stars: 5 gold stars, top-right corner (GTA HUD detail).
   - "WASTED": huge grey death-screen lettering across the open sky,
-    y ~250..430, letter-spaced, black outline.
-  - Sub-line under it: "CAUSE OF DEATH: SHOT WHILE WAITING FOR GTA 6".
-  - Loading bar HUD: dark bar, 99% filled, centred over the sun — the
-    wait that got him killed.
+    y ~200..380, letter-spaced, black outline.
+  - Cause of death sub-line: "CAUSE OF DEATH: 13 YEARS, 2 DELAYS,
+    99% LOADING" — the wait, the delays, the loading screen.
+  - Loading bar HUD: dark bar, 99% filled, centred over the sun, with
+    "99% - EST. TIME: 13 YEARS" under it (the download that never ends).
+  - Tagline under the bar: "BACK IN VICE CITY. AGAIN. (SINCE 2002)" —
+    the same city as 2002.
   - Bottom punchline bar: translucent black strip (y 908..1024) with the
     REAL make.fun ghost (press-kit mark) at the left and three short lines
-    in the left column only (clear of the gamer's face/legs at the right):
+    in the left column only (clear of the gamer at the right):
     "MEANWHILE MY AI AGENT" / "ALREADY WON REAL MONEY" / "ON make.fun".
 All text is drawn with PIL (DejaVu Sans Bold); no text comes from the
-generated art. Auto-fit helpers guarantee no line can clip.
+generated art. Auto-fit helpers guarantee no line can clip. No specs,
+prices or review scores are invented anywhere in the meme.
 """
 import hashlib
 import math
@@ -32,12 +37,12 @@ ASSETS = HERE / "assets"
 BOLD = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
 
 W = 1024
-BASE = ASSETS / "media-generation-gta6-wasted-driveby-vice-city-0-b0d5924a-24f7-4ec1-8828-ba1c08e3a3fa.png"
+BASE = ASSETS / "media-generation-gta6-satire-vice-city-base-0-980f51f6-e46d-4a15-86ce-758cce7961f3.png"
 GHOST = ASSETS / "mark-1024.png"
 
 # Bottom punchline bar geometry. The gamer sits at the lower right
-# (head ~x 830..960, legs running to the bottom edge), so the bar text
-# must stay in the left column, x <= ~650.
+# (head ~x 640..770, legs/shoe running to the bottom edge), so the bar
+# text must stay in the left column, x <= ~650.
 BAR_Y0 = 908
 BAR_Y1 = 1024
 
@@ -104,23 +109,29 @@ def main():
     while (sum(f_wasted.getlength(c) for c in "WASTED")
            + tracking * 5 > W - 40 and f_wasted.size > 60):
         f_wasted = ImageFont.truetype(BOLD, f_wasted.size - 4)
-    wasted_y = 258
+    wasted_y = 200
     draw_spaced(draw, "WASTED", f_wasted, W // 2, wasted_y, tracking,
                 fill="#D8D8D8", stroke="black", stroke_w=7)
     wasted_bottom = wasted_y + f_wasted.size + 14
 
-    # ---- Cause of death sub-line: the new drive-by gag ----
-    sub = "CAUSE OF DEATH: SHOT WHILE WAITING FOR GTA 6"
-    f_sub = fit_font(sub, W - 80, 46)
-    draw_centered(draw, sub, f_sub, W // 2, wasted_bottom + 6,
-                  fill="white", stroke="black")
+    # ---- Cause of death sub-line: the satire — wait, delays, loading.
+    # Two short lines so each can stay big enough to read at 480px.
+    sub_lines = ["CAUSE OF DEATH:",
+                 "13 YEARS, 2 DELAYS, 99% LOADING"]
+    f_sub = fit_font(sub_lines[1], W - 80, 42)
+    sub_y = wasted_bottom + 6
+    for t in sub_lines:
+        draw_centered(draw, t, f_sub, W // 2, sub_y,
+                      fill="white", stroke="black")
+        sub_y += int(f_sub.size * 1.08)
+    sub_bottom = sub_y
 
-    # ---- Loading bar HUD: stuck at 99% — the wait that got him killed ----
+    # ---- Loading bar HUD: stuck at 99% — the download that never ends ----
     bar_w, bar_h = 560, 30
     bar_x0 = (W - bar_w) // 2
-    bar_y0 = wasted_bottom + 6 + f_sub.size + 26
+    bar_y0 = sub_bottom + 24
     bar_y1 = bar_y0 + bar_h
-    assert bar_y1 < 640, bar_y1  # must stay above the skyline/water
+    assert bar_y1 < 600, bar_y1  # must stay above the skyline/water
     draw.rectangle([bar_x0 - 3, bar_y0 - 3, bar_x0 + bar_w + 3,
                     bar_y1 + 3], fill="black")
     draw.rectangle([bar_x0, bar_y0, bar_x0 + bar_w, bar_y1],
@@ -130,9 +141,22 @@ def main():
                    fill="#FF2E88")
     draw.rectangle([bar_x0 + fill_w, bar_y0, bar_x0 + bar_w, bar_y1],
                    fill="#3A3A44")
-    f_pct = ImageFont.truetype(BOLD, 34)
-    draw_centered(draw, "99%", f_pct, W // 2, bar_y1 + 10,
+    pct = "99% - EST. TIME: 13 YEARS"
+    f_pct = fit_font(pct, W - 120, 32)
+    draw_centered(draw, pct, f_pct, W // 2, bar_y1 + 10,
                   fill="white", stroke="black")
+    pct_bottom = bar_y1 + 10 + f_pct.size
+
+    # ---- Same-city tagline: back in Vice City again, since 2002.
+    # Left-of-centre over the open water so it never crosses the busy
+    # calendar stack at the right (v1 defect: "(SINCE 2002)" sat on the
+    # beige calendar pages, yellow-on-beige, weak contrast at 480px).
+    tag = "BACK IN VICE CITY. AGAIN. (SINCE 2002)"
+    f_tag = fit_font(tag, 660, 30)
+    tag_y = pct_bottom + 14
+    assert tag_y + f_tag.size < 640, tag_y  # must stay above the skyline
+    draw_centered(draw, tag, f_tag, 390, tag_y,
+                  fill="#FFD23F", stroke="black")
 
     # ---- Bottom punchline bar: ghost + three short lines, left column ----
     draw.rectangle([0, BAR_Y0, W, BAR_Y1], fill=(0, 0, 0, 178))
@@ -159,7 +183,8 @@ def main():
     print("wrote", out, canvas.size)
     print("sha256", hashlib.sha256(out.read_bytes()).hexdigest())
     print("wasted font", f_wasted.size, "sub", f_sub.size,
-          "bottom", f_bot.size, "bar_y1", bar_y1)
+          "pct", f_pct.size, "tag", f_tag.size, "bottom", f_bot.size,
+          "bar_y1", bar_y1, "tag_y", tag_y)
 
 
 if __name__ == "__main__":
