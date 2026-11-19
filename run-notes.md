@@ -148,8 +148,10 @@ phone and sends the URL. Do NOT submit with the placeholder.
   main session 710bc693-2de5-453e-a87f-8be6fb75c614
 - Parents (revision 1): coordinator session 63eb32f6-46d8-497e-90dc-e026a6c617b7 +
   main session 710bc693-2de5-453e-a87f-8be6fb75c614
-- Parents (revision 2): coordinator session 92c77703-9b0f-40d7-ab27-ae36f5394ff1 +
+- Parents (revision 2): coordinator session a99d01f6-61c7-4809-9a91-fdc98cb5239e +
   main session 710bc693-2de5-453e-a87f-8be6fb75c614
+  (corrected by the rev-2 coordinator: the build agent had recorded a wrong
+  coordinator id taken from its task label)
 - Prompt file (user's verbatim words): ~/workspace/makefun/prompt-gta6-meme-x-01.txt
   ("Gas, buatkan meme-nya")
 - Revision 1 prompt file: ~/workspace/makefun/prompt-gta6-meme-x-01-rev1.txt
