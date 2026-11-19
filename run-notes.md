@@ -53,6 +53,46 @@ Carries make.fun (link) + @makefunai tag, play code
 Post from the public X account with meme.png attached as the FIRST picture.
 Keep the post up and the account public until results are out.
 
+## Revision 1 — Drake Hotline Bling format (2026-11-20 ~02:00 WIB)
+
+User's verbatim instruction: "Revisi gambarnya. Pake meme umum. Atau meme
+lagi hype." Prompt file: ~/workspace/makefun/prompt-gta6-meme-x-01-rev1.txt
+(OUTSIDE the repo). The 99%-loading gamer meme (commit 7acb922) is replaced
+entirely; render.py + meme.png rewritten fresh in-session.
+
+Concept: Drake Hotline Bling, redrawn as an ORIGINAL illustration (no
+copyrighted Drake photo, no lifted meme image). Same cartoon character in
+both panels (short dark hair, light beard, orange puffer jacket, plain
+beige background): TOP panel hand up, looking away, rejecting; BOTTOM
+panel smiling, pointing right — straight at the real make.fun ghost.
+Top text: "WAITING / 13 YEARS / FOR GTA 6" + "STILL STUCK / AT 99%".
+Bottom text: "MY AI AGENT / ALREADY WON / REAL MONEY / ON make.fun",
+under the real press-kit ghost (magenta disc, 230px) in the approve half.
+
+Assets (new): `assets/media-generation-drake-reject-panel-0-fdf72acd-...webp`
+and `assets/media-generation-drake-approve-panel-0-1d31e28e-...webp` —
+original illustrations generated in-session with media.generate_image
+(no text, no logos in the generated art; all text added with PIL).
+Ghost still the REAL press asset `assets/mark-1024.png`; AI was NOT used
+to draw the ghost/logo. Old gamer-base asset stays in the repo (unused).
+
+Layout: 1024x1024, top half text-left / reject-right, white 12px divider,
+bottom half approve-left / ghost+text-right. Text blocks use the panel
+background colour sampled from the art so they blend; text is DejaVu Sans
+Bold, white with black outline, auto-fit so no line can clip.
+
+Visual check (genuine revision):
+- v1 defect found by pixel scan, not by eye: the bottom block was 518px
+  tall in a 506px half — "ON make.fun" ran to the very last row (row 1023)
+  and was clipped at the bottom edge.
+- v2 fix (real layout change in render.py): ghost 250 -> 230px, bottom
+  font 54 -> 50, plus an assert that the block fits inside the half with
+  margin. Lowest dark row in the bottom-right is now 1004 (20px margin).
+- v2 re-checked at full size and at 480x480 (judge size): no clipped text,
+  all text legible, ghost clearly recognisable, pointing gesture reads as
+  pointing at the ghost. Final meme.png sha256:
+  cc6d2968a7bb5ecd0201456f42a91e1fa929adcb939e658e645279166321678c
+
 ## POST.json — PLACEHOLDER, MUST BE REPLACED
 
 `POST.json` currently holds `{"url": "https://x.com/<handle>/status/<id>"}`.
@@ -63,10 +103,16 @@ phone and sends the URL. Do NOT submit with the placeholder.
 
 - --prompt-origin handed-off
 - --prompt-via "subagent task from the main agent"
-- Parents: coordinator session 356eb1fa-4000-4f0e-b0cc-6752af6f9699 +
+- Parents (round 1): coordinator session 356eb1fa-4000-4f0e-b0cc-6752af6f9699 +
+  main session 710bc693-2de5-453e-a87f-8be6fb75c614
+- Parents (revision 1): coordinator session 63eb32f6-46d8-497e-90dc-e026a6c617b7 +
   main session 710bc693-2de5-453e-a87f-8be6fb75c614
 - Prompt file (user's verbatim words): ~/workspace/makefun/prompt-gta6-meme-x-01.txt
   ("Gas, buatkan meme-nya")
+- Revision 1 prompt file: ~/workspace/makefun/prompt-gta6-meme-x-01-rev1.txt
+  ("Revisi gambarnya. Pake meme umum. Atau meme lagi hype.")
+  --prompt-origin handed-off, --prompt-via "subagent task from the main agent"
+  (same parents as above)
 - Competition: gta6-meme-x-01, $500, top 50 share, deadline
   2026-11-23T14:00:00Z (23 Nov 21:00 WIB), FREE entry, quota entries_made 0
   (day cap 3 left 3). Reward locked in Solana escrow — parent's submit
