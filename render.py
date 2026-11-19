@@ -1,20 +1,22 @@
 #!/usr/bin/env python3
-"""Render the gta6-meme-x-01 WASTED-format meme (rev 2).
+"""Render the gta6-meme-x-01 WASTED drive-by meme (rev 3).
 
-Replaces the Drake format entirely. One scene, one gag: the iconic GTA
-"WASTED" death screen over a neon Vice City / Leonida sunset, with a
-Hawaiian-shirt gamer slumped face-down on the beach, a loading bar stuck
-at 99%, and the real make.fun ghost in the bottom punchline bar.
+Replaces the rev-2 "99% loading screen" death. Same neon Vice City /
+Leonida sunset and GTA death-screen format, new gag: the gamer gets SHOT
+in a drive-by while waiting for the game. Fresh original illustration:
+a pink convertible speeds away with a muzzle flash, the Hawaiian-shirt
+gamer slumps on the curb still clutching his controller, cans scattered.
 
 Layout (1024x1024, base scene is the full-bleed illustration):
-  - Wanted stars: 5 stars, top-right corner (GTA HUD detail).
+  - Wanted stars: 5 gold stars, top-right corner (GTA HUD detail).
   - "WASTED": huge grey death-screen lettering across the open sky,
     y ~250..430, letter-spaced, black outline.
-  - Sub-line under it: "CAUSE OF DEATH: THE 99% LOADING SCREEN".
-  - Loading bar HUD: dark bar, 99% filled, centred over the sun/skyline.
+  - Sub-line under it: "CAUSE OF DEATH: SHOT WHILE WAITING FOR GTA 6".
+  - Loading bar HUD: dark bar, 99% filled, centred over the sun — the
+    wait that got him killed.
   - Bottom punchline bar: translucent black strip (y 908..1024) with the
     REAL make.fun ghost (press-kit mark) at the left and three short lines
-    in the left column only (clear of the gamer's face):
+    in the left column only (clear of the gamer's face/legs at the right):
     "MEANWHILE MY AI AGENT" / "ALREADY WON REAL MONEY" / "ON make.fun".
 All text is drawn with PIL (DejaVu Sans Bold); no text comes from the
 generated art. Auto-fit helpers guarantee no line can clip.
@@ -30,11 +32,12 @@ ASSETS = HERE / "assets"
 BOLD = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
 
 W = 1024
-BASE = ASSETS / "media-generation-gta6-wasted-vice-city-base-0-9b0b21d1-bfda-4206-a078-305220b2273c.png"
+BASE = ASSETS / "media-generation-gta6-wasted-driveby-vice-city-0-b0d5924a-24f7-4ec1-8828-ba1c08e3a3fa.png"
 GHOST = ASSETS / "mark-1024.png"
 
-# Bottom punchline bar geometry (must stay clear of the gamer's face,
-# whose chin sits just above y ~905 in the base art).
+# Bottom punchline bar geometry. The gamer sits at the lower right
+# (head ~x 830..960, legs running to the bottom edge), so the bar text
+# must stay in the left column, x <= ~650.
 BAR_Y0 = 908
 BAR_Y1 = 1024
 
@@ -94,13 +97,9 @@ def main():
     for _ in range(5):
         draw_star(draw, x, top, star_r, fill="#FFD23F")
         x -= gap
-    # thin dark strip behind the stars so they read over the palm fronds
-    # (drawn first would be cleaner, but stars are opaque with outline;
-    # verify visually instead — see run-notes).
 
     # ---- WASTED: huge grey death-screen lettering over the open sky ----
     f_wasted = fit_font("WASTED", W - 60, 200)
-    # letter-spacing needs room: shrink until spaced width fits
     tracking = 18
     while (sum(f_wasted.getlength(c) for c in "WASTED")
            + tracking * 5 > W - 40 and f_wasted.size > 60):
@@ -110,13 +109,13 @@ def main():
                 fill="#D8D8D8", stroke="black", stroke_w=7)
     wasted_bottom = wasted_y + f_wasted.size + 14
 
-    # ---- Cause of death sub-line ----
-    sub = "CAUSE OF DEATH: THE 99% LOADING SCREEN"
+    # ---- Cause of death sub-line: the new drive-by gag ----
+    sub = "CAUSE OF DEATH: SHOT WHILE WAITING FOR GTA 6"
     f_sub = fit_font(sub, W - 80, 46)
     draw_centered(draw, sub, f_sub, W // 2, wasted_bottom + 6,
                   fill="white", stroke="black")
 
-    # ---- Loading bar HUD: stuck at 99% ----
+    # ---- Loading bar HUD: stuck at 99% — the wait that got him killed ----
     bar_w, bar_h = 560, 30
     bar_x0 = (W - bar_w) // 2
     bar_y0 = wasted_bottom + 6 + f_sub.size + 26
@@ -129,24 +128,19 @@ def main():
     fill_w = int(bar_w * 0.99)
     draw.rectangle([bar_x0, bar_y0, bar_x0 + fill_w, bar_y1],
                    fill="#FF2E88")
-    # thin bright remainder so the 1% gap reads as "almost there"
     draw.rectangle([bar_x0 + fill_w, bar_y0, bar_x0 + bar_w, bar_y1],
                    fill="#3A3A44")
     f_pct = ImageFont.truetype(BOLD, 34)
     draw_centered(draw, "99%", f_pct, W // 2, bar_y1 + 10,
                   fill="white", stroke="black")
 
-    # ---- Bottom punchline bar: ghost + two short lines ----
+    # ---- Bottom punchline bar: ghost + three short lines, left column ----
     draw.rectangle([0, BAR_Y0, W, BAR_Y1], fill=(0, 0, 0, 178))
     ghost_size = 104
     g = ghost.resize((ghost_size, ghost_size), Image.LANCZOS)
     gy = BAR_Y0 + (BAR_Y1 - BAR_Y0 - ghost_size) // 2
     canvas.paste(g, (14, gy), g)
     draw = ImageDraw.Draw(canvas, "RGBA")
-    # v2: three short lines in the LEFT column only (x 130..650). v1's two
-    # centred lines ran across the gamer's face (head spans x ~700..900
-    # down into the bar) — text talked over the character. The left column
-    # is empty beach/sand, so the face stays clear.
     lines = ["MEANWHILE MY AI AGENT",
              "ALREADY WON REAL MONEY",
              "ON make.fun"]

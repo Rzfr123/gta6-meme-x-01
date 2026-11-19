@@ -134,6 +134,42 @@ Visual check (genuine revision):
   Final meme.png sha256:
   0616a7e592550efef7832cf2a649b49d7215ca70049be0b6cc3250e69641649e
 
+## Revision 3 — WASTED drive-by: shot while waiting (2026-11-20 ~02:00 WIB)
+
+User's verbatim instruction: "Keknya lebih bagus seperti kena tembak
+nungguin game." Prompt file:
+~/workspace/makefun/prompt-gta6-meme-x-01-rev3.txt (OUTSIDE the repo).
+The rev-2 "99% loading screen" death (commit 12dda38) is replaced;
+render.py + meme.png rewritten fresh in-session. DO NOT SUBMIT — no X
+post exists yet.
+
+Concept: same GTA "WASTED" death screen + neon Vice City / Leonida
+sunset as rev 2, but the death gag changes: the gamer gets SHOT in a
+drive-by while waiting for the game. Fresh original illustration: a pink
+convertible speeds away with a muzzle flash, the Hawaiian-shirt gamer
+slumps on the curb still clutching his controller, cans scattered.
+Huge grey "WASTED" across the open sky; sub-line "CAUSE OF DEATH: SHOT
+WHILE WAITING FOR GTA 6"; the 99% loading bar stays as the wait that got
+him killed; five gold wanted stars top-right. Bottom punchline bar with
+the REAL press-kit ghost (magenta disc, 104px): "MEANWHILE MY AI AGENT /
+ALREADY WON REAL MONEY / ON make.fun".
+
+Assets (new): `assets/media-generation-gta6-wasted-driveby-vice-city-0-b0d5924a-...png`
+— original illustration generated in-session with media.generate_image
+(no text, no logos in the generated art; all text added with PIL).
+Ghost still the REAL press asset `assets/mark-1024.png`; AI was NOT used
+to draw the ghost/logo. Old rev-2 base stays in the repo (unused).
+
+Visual check (v1 -> v2):
+- v1 read at full size and at 480x480 (judge size): WASTED huge and
+  unclipped, sub-line fully visible, 99% bar + "99%" legible, 5 stars
+  readable, ghost clearly recognisable, bottom punchline legible with no
+  overlaps, gamer's face clear above the bar, muzzle flash + getaway car
+  read at both sizes. No clipped text, no overlaps, no illegible text.
+- No defects found, so no v2 layout change was needed — v1 is the final.
+  Final meme.png sha256:
+  bd124be2081cabf076f55a902172e1296831392853b0727b6d3da648292c7574
+
 ## POST.json — PLACEHOLDER, MUST BE REPLACED
 
 `POST.json` currently holds `{"url": "https://x.com/<handle>/status/<id>"}`.
@@ -148,10 +184,12 @@ phone and sends the URL. Do NOT submit with the placeholder.
   main session 710bc693-2de5-453e-a87f-8be6fb75c614
 - Parents (revision 1): coordinator session 63eb32f6-46d8-497e-90dc-e026a6c617b7 +
   main session 710bc693-2de5-453e-a87f-8be6fb75c614
-- Parents (revision 2): coordinator session a99d01f6-61c7-4809-9a91-fdc98cb5239e +
+- Parents (revision 3): coordinator session cb5ad0ce-a756-49c9-847e-414a71c6cf6b +
   main session 710bc693-2de5-453e-a87f-8be6fb75c614
-  (corrected by the rev-2 coordinator: the build agent had recorded a wrong
-  coordinator id taken from its task label)
+- Revision 3 prompt file: ~/workspace/makefun/prompt-gta6-meme-x-01-rev3.txt
+  ("Keknya lebih bagus seperti kena tembak nungguin game.")
+  --prompt-origin handed-off, --prompt-via "subagent task from the main agent"
+  (same parents as above)
 - Prompt file (user's verbatim words): ~/workspace/makefun/prompt-gta6-meme-x-01.txt
   ("Gas, buatkan meme-nya")
 - Revision 1 prompt file: ~/workspace/makefun/prompt-gta6-meme-x-01-rev1.txt
